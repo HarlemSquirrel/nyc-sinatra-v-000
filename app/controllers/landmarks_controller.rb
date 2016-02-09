@@ -11,7 +11,6 @@ class LandmarksController < ApplicationController
   end
 
   post '/landmarks' do
-    #binding.pry
     landmark = Landmark.create(
       name: params[:landmark["name"]],
       year_completed: params[:landmark["year_completed"]]
@@ -38,6 +37,4 @@ class LandmarksController < ApplicationController
     @landmark = Landmark.find_by_id(params[:id])
     erb :edit
   end
-
-
 end
