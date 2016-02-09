@@ -1,8 +1,12 @@
 <table>
   <tr>
     <th>Name</th>
+    <th>Titles</th>
+    <th>Landmarks</th>
   </tr>
   <tr>
     <td><%= @figure.name %></td>
+    <td><%= @figure.titles.collect{|t|t.name}.join(", ") %></td>
+    <td><%= @figure.landmarks.collect{|t|t.name}.join(", ") %></td>
   </tr>
 <table>

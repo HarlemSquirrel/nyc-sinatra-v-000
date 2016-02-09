@@ -1,8 +1,25 @@
-<h1>Edit a Landmark</h1>
+<h1>Edit a Figure</h1>
 
-<form class="edit_landmark" action="/landmarks/<%=@landmark.id%>" method="post">
+<form class="edit_figure" action="/figures/<%=@figure.id%>" method="post">
   <input type="hidden" name="_method" value="patch">
-  <input id="landmark_name" type="text" name="landmark[name]" value="<%=@landmark.name%>">
-  <input id="landmark_year_completed" type="text" name="landmark[year_completed]" value="<%=@landmark.year_completed%>">
-  <input type="submit" name="submit" value="Edit Landmark">
+  <input id="figure_name" type="text" name="figure[name]" value="<%=@figure.name%>">
+  <br><br>
+  <h3>Select Titles and/or Create a new Title</h3>
+  <% @titles.each do |title| %>
+    <input id="title_<%= title.id %>" type="checkbox"
+      name="figure[title_ids][]" value="<%= title.id %>">
+  <% end %><br>
+  <input id="new_title" type="text" name="title[name]" placeholder="New Title Name">
+  <br><br>
+
+  <h3>Select Landmarks and/or Create a new Landmark</h3>
+  <% @landmarks.each do |landmark| %>
+    <input id="landmark_<%= landmark.id %>" type="checkbox"
+      name="figure[landmark_ids][]" value="<%= landmark.id %>">
+  <% end %>
+  <input id="new_landmark" type="text" name="landmark[name]" placeholder="New Landmark Name">
+  <input id="landmark_year_completed" type="text"
+    name="landmark[year_completed]" placeholder="Year Completed">
+
+  <input type="submit" name="Create New Figure" value="Edit Figure">
 </form>
