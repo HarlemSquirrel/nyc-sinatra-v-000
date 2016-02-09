@@ -29,7 +29,7 @@ describe LandmarksController do
 
   it "allows you to list all landmarks" do
     visit '/landmarks'
-    
+
     expect(page.status_code).to eq(200)
 
     expect(page.body).to include("BQE")
@@ -52,7 +52,7 @@ describe LandmarksController do
     expect(last_response.body).to include('<form')
     expect(last_response.body).to include('landmark[name]')
     expect(last_response.body).to include('landmark[year_completed]')
-    expect(last_response.body).to include(@landmark.name)    
+    expect(last_response.body).to include(@landmark.name)
     expect(last_response.body).to include(@landmark.year_completed.to_s)
 
   end
@@ -61,12 +61,12 @@ describe LandmarksController do
   it "allows you to edit a single landmark" do
     @landmark = Landmark.first
     visit "/landmarks/#{@landmark.id}/edit"
-    fill_in :name, with: "BQE!!!!"
-    fill_in :year_completed, with: 9999
+    fill_in :landmark_name, with: "BQE!!!!"
+    fill_in :landmark_year_completed, with: "9999"
     click_button "Edit Landmark"
     @landmark = Landmark.first
     expect(page.current_path).to eq("/landmarks/#{@landmark.id}")
-    expect(page.body).to include(@landmark.name)    
+    expect(page.body).to include(@landmark.name)
 
     expect(page.body).to include(@landmark.year_completed.to_s)
     expect(@landmark.name).to eq("BQE!!!!")
